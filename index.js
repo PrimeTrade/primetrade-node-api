@@ -11,4 +11,23 @@ function getExchanges ()  {
     return a;
 }
 
-console.log(getExchanges());
+//console.log(getExchanges());
+
+function getMarketCurrency (exchangeName){
+    var markets = [];
+    return (async function () {
+
+        let newExchange = new ccxt[exchangeName]();
+        let abc = await newExchange.loadMarkets();
+
+        lodash.forEach(abc , (i, index) => {
+            //console.log(index);
+            markets.push(index);
+        });
+
+        return markets;
+
+    }) ();
+}
+
+//getMarketCurrency('okex').then((markets) => console.log(markets));
