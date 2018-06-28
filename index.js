@@ -31,3 +31,21 @@ function getMarketCurrency (exchangeName){
 }
 
 //getMarketCurrency('okex').then((markets) => console.log(markets));
+
+function getTick(marketName, exchangeName){
+
+
+    return (async function () {
+
+        let newExchange = new ccxt[exchangeName]();
+        let abc = await newExchange.fetchTicker (marketName);
+
+        //console.log(abc)
+        return abc;
+
+    }) ();
+
+}
+
+getTick('BTC/USDT','okex').then((abc) => console.log(abc));
+
