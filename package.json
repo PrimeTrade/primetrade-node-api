@@ -1,0 +1,19 @@
+{
+  "name": "primetradeai_api",
+  "version": "1.0.0",
+  "description": "A package for Primetrade.ai api ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Primetarde",
+    "Primetradeai"
+  ],
+  "author": "Kunal Sharma <kunal@primetrade.ai>",
+  "license": "ISC",
+  "dependencies": {
+    "ccxt": "^1.14.267",
+    "lodash": "^4.17.10"
+  }
+}
