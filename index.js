@@ -32,6 +32,33 @@ function getMarketCurrency (exchangeName){
 
 //getMarketCurrency('okex').then((markets) => console.log(markets));
 
+
+function getOrderBook(exchangeName){
+
+    var orderBook = [];
+    return (async function () {
+
+        let newExchange = new ccxt[exchangeName]();
+        let abc = await newExchange.loadMarkets();
+
+        lodash.forEach(abc , (i, index) => {
+            (async function () {
+
+                let newExchange1 = new ccxt[exchangeName]();
+                //console.log (await newExchange1.fetchOrderBook (index))
+                //orderBook.push(await newExchange1.fetchOrderBook (index));
+                console.log(await newExchange1.fetchOrderBook (index));
+            }) ();
+
+        });
+
+        return(orderBook);
+
+    }) ();
+
+}
+
+
 function getTick(marketName, exchangeName){
 
 
@@ -47,5 +74,5 @@ function getTick(marketName, exchangeName){
 
 }
 
-getTick('BTC/USDT','okex').then((abc) => console.log(abc));
+//getTick('BTC/USDT','okex').then((abc) => console.log(abc));
 
