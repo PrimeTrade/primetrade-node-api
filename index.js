@@ -4,16 +4,16 @@ let lodash = require('lodash');
 
 // public APIs
 
-function getExchanges ()  {
+exports.getExchanges = () => {
 
-    let a = ccxt.exchanges;
+    var a = ccxt.exchanges;
     //console.log (a) ;
     return a;
+    
 }
 
-//console.log(getExchanges());
 
-function getMarketCurrency (exchangeName){
+exports.getMarketCurrency = (exchangeName) => {
     var markets = [];
     return (async function () {
 
@@ -33,7 +33,7 @@ function getMarketCurrency (exchangeName){
 //getMarketCurrency('okex').then((markets) => console.log(markets));
 
 
-function getOrderBook(exchangeName){
+exports.getOrderBook = (exchangeName) => {
 
     var orderBook = [];
     return (async function () {
@@ -45,9 +45,8 @@ function getOrderBook(exchangeName){
             (async function () {
 
                 let newExchange1 = new ccxt[exchangeName]();
-                //console.log (await newExchange1.fetchOrderBook (index))
-                //orderBook.push(await newExchange1.fetchOrderBook (index));
-                console.log(await newExchange1.fetchOrderBook (index));
+                orderBook.push(await newExchange1.fetchOrderBook (index));
+                //console.log(await newExchange1.fetchOrderBook (index));
             }) ();
 
         });
@@ -59,7 +58,7 @@ function getOrderBook(exchangeName){
 }
 
 
-function getTick(marketName, exchangeName){
+exports.getTick = (marketName, exchangeName) => {
 
 
     return (async function () {
