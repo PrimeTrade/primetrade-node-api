@@ -1,6 +1,17 @@
-const ccxt = require('ccxt');
+const request = require('request');
 const _ = require('lodash');
-
+let orders = [];
+exports.getOrderBook = (exchangeName)=>{
+    request({
+        uri: `http://13.126.176.236/exchange/${exchangeName}/orderBook?market=ETH/BTC`,
+        json: true
+    }, (err,response,body)=>{
+        if(!err && response.statusCode===200){
+            return body;
+        }
+    })
+};
+/*
 exports.getOpenOrders = (exchange_name, since, limit, public_apiKey,secret_key)=>{
     let exchange = new ccxt [exchange_name]({
         apikey: public_apiKey,
@@ -42,3 +53,4 @@ exports.getAllOpenOrders = (since, limit, public_apiKey, secret_key)=>{
             console.log(`${exchange.id} doesn't have open orders to fetch`);
     })
 };
+*/
