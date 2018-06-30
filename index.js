@@ -1,15 +1,26 @@
 const request = require('request');
 const _ = require('lodash');
-let orders = [];
-exports.getOrderBook = (exchangeName)=>{
+//let orders = [];
+exports.getOrderBook = (exchangeName)=> {
     request({
-        uri: `http://13.126.176.236/exchange/${exchangeName}/orderBook?market=ETH/BTC`,
+        uri: `http://13.126.176.236/exchange/${exchangeName}/markets`,
         json: true
-    }, (err,response,body)=>{
-        if(!err && response.statusCode===200){
-            return body;
+    }, (err, response, body) => {
+        if (!err && response.statusCode === 200) {
+            _.each(body, (val, i) => {
+                let sym = val.symbol;
+                request({
+                    uri: `http://13.126.176.236/exchange/${exchangeName}/orderBook?market=${sym}`,
+                    json: true
+                }, (err, response, body) => {
+                    if (!err && response.statusCode === 200) {
+                        return body;
+                    }
+                })
+            })
+
         }
-    })
+    });
 };
 /*
 exports.getOpenOrders = (exchange_name, since, limit, public_apiKey,secret_key)=>{
