@@ -5,7 +5,7 @@ let lodash = require('lodash');
 
 // public APIs
 
-function getExchanges(){
+exports.getExchanges = () => {
 
 	let relativeURL = "http://13.126.176.236/exchange";
 	var exchange = [];
@@ -29,32 +29,41 @@ function getExchanges(){
     
     return exchange;
     
-}
+};
 
-console.log(getExchanges());
+
+
+exports.getMarketCurrency = (exchangeName) => {
+
+    var markets = [];
+    let relativeURL = "http://13.126.176.236/exchange/bittrex/markets";
+
+    let a = request({
+        url: relativeURL,
+        json: true
+    }, function (error, response, body) {
+
+        if (!error && response.statusCode === 200) {
+
+            lodash.forEach(body, (i,index) => {
+
+                //console.log(i.symbol);
+                markets.push(i.symbol);
+            })
+
+        }
+        else{
+            console.log('error occured');
+        }
+
+
+    });
+    return markets;
+};
+
 
 
 /*
-exports.getMarketCurrency = (exchangeName) => {
-    var markets = [];
-    return (async function () {
-
-        let newExchange = new ccxt[exchangeName]();
-        let abc = await newExchange.loadMarkets();
-
-        lodash.forEach(abc , (i, index) => {
-            //console.log(index);
-            markets.push(index);
-        });
-
-        return markets;
-
-    }) ();
-}
-
-//getMarketCurrency('okex').then((markets) => console.log(markets));
-
-
 exports.getOrderBook = (exchangeName) => {
 
     var orderBook = [];
