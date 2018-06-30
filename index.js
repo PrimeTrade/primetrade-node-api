@@ -1,18 +1,40 @@
+let request = require('request');
 let ccxt = require('ccxt');
 let lodash = require('lodash');
 
 
 // public APIs
 
-exports.getExchanges = () => {
+function getExchanges(){
 
-    var a = ccxt.exchanges;
-    //console.log (a) ;
-    return a;
+	let relativeURL = "http://13.126.176.236/exchange";
+	var exchange = [];
+
+
+    request({
+        url: relativeURL,
+        json: true
+    }, function (error, response, body) {
+
+        if (!error && response.statusCode === 200) {
+        
+        	//console.log(body);
+        	exchange.push(body);
+        
+        }
+        else{
+        	console.log('error occured');
+        }
+    });
+    
+    return exchange;
     
 }
 
+console.log(getExchanges());
 
+
+/*
 exports.getMarketCurrency = (exchangeName) => {
     var markets = [];
     return (async function () {
@@ -46,7 +68,7 @@ exports.getOrderBook = (exchangeName) => {
 
                 let newExchange1 = new ccxt[exchangeName]();
                 orderBook.push(await newExchange1.fetchOrderBook (index));
-                //console.log(await newExchange1.fetchOrderBook (index));
+                console.log(await newExchange1.fetchOrderBook (index));
             }) ();
 
         });
@@ -75,3 +97,4 @@ exports.getTick = (marketName, exchangeName) => {
 
 //getTick('BTC/USDT','okex').then((abc) => console.log(abc));
 
+*/
