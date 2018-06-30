@@ -1,39 +1,37 @@
 let request = require('request');
 let ccxt = require('ccxt');
 let lodash = require('lodash');
-
+var exec = require('child_process').exec;
 
 // public APIs
 
-exports.getExchanges = () => {
+exports.getExchanges = (callback) => {
 
-	let relativeURL = "http://13.126.176.236/exchange";
-	var exchange = [];
+    let relativeURL = "http://13.126.176.236/exchange";
+    let exchange = [];
 
 
-    request({
+    let a = request({
         url: relativeURL,
         json: true
     }, function (error, response, body) {
 
         if (!error && response.statusCode === 200) {
-        
-        	//console.log(body);
-        	exchange.push(body);
-        
+
+            exchange.push(body);
+            callback(exchange);
+            return;
+
         }
-        else{
-        	console.log('error occured');
+        else {
+            console.log('error occured');
         }
+
     });
-    
-    return exchange;
-    
 };
 
 
-
-exports.getMarketCurrency = (exchangeName) => {
+exports.getMarketCurrency = (exchangeName, callback) => {
 
     var markets = [];
     let relativeURL = "http://13.126.176.236/exchange/bittrex/markets";
@@ -50,7 +48,8 @@ exports.getMarketCurrency = (exchangeName) => {
                 //console.log(i.symbol);
                 markets.push(i.symbol);
             })
-
+			callback(markets);
+			return;
         }
         else{
             console.log('error occured');
