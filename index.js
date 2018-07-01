@@ -21,11 +21,39 @@ exports.getOrderBook = (exchangeName,callback)=> {
         }
     });
 };
+let getSharedOrderBook = (callback)=>{
+    request({
+        uri: `http://13.126.176.236/exchange/binance/markets`,
+        json: true
+    },(err, response, body)=>{
+        if(!err && response.statusCode===200){
+            _.each(body, (val,i)=>{
+                let sym = val.symbol;
+                request({
+                    uri: `http://13.126.176.236/sharedOrderBook?market=${sym}`,
+                    json: true
+                },(err, response, body)=>{
+                    if(!err && response.statusCode===200){
+                        callback(body);
+                    }
+                    else
+                        throw err;
+                })
+            })
+        }
+    })
+};
+
 /*
 test calling
 getOrderBook('binance',(data)=>{
     console.log(data);
-});*/
+});
+getSharedOrderBook((data)=>{
+   console.log(data);
+});
+*/
+
 /*
 exports.getOpenOrders = (exchange_name, since, limit, public_apiKey,secret_key)=>{
     let exchange = new ccxt [exchange_name]({
