@@ -1,7 +1,5 @@
 let request = require('request');
-let ccxt = require('ccxt');
 let lodash = require('lodash');
-var exec = require('child_process').exec;
 
 // public APIs
 
