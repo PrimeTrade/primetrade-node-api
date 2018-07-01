@@ -61,6 +61,28 @@ exports.getMarketCurrency = (exchangeName, callback) => {
 };
 
 
+exports.getTick = (marketName, exchangeName, callback) => {
+
+    let relativeURL = "http://13.126.176.236/exchange/"+ exchangeName +"/tickers?market=" + marketName;
+
+    let a = request({
+        url: relativeURL,
+        json: true
+    }, function (error, response, body) {
+
+        if (!error && response.statusCode === 200) {
+            //console.log(body);
+            callback(body);
+            return;
+        }
+        else{
+            console.log('error occured');
+        }
+
+
+    });
+};
+
 
 /*
 exports.getOrderBook = (exchangeName) => {
@@ -86,23 +108,5 @@ exports.getOrderBook = (exchangeName) => {
     }) ();
 
 }
-
-
-exports.getTick = (marketName, exchangeName) => {
-
-
-    return (async function () {
-
-        let newExchange = new ccxt[exchangeName]();
-        let abc = await newExchange.fetchTicker (marketName);
-
-        //console.log(abc)
-        return abc;
-
-    }) ();
-
-}
-
-//getTick('BTC/USDT','okex').then((abc) => console.log(abc));
 
 */
