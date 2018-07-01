@@ -1,7 +1,6 @@
 const request = require('request');
 const _ = require('lodash');
-//let orders = [];
-exports.getOrderBook = (exchangeName)=> {
+exports.getOrderBook = (exchangeName,callback)=> {
     request({
         uri: `http://13.126.176.236/exchange/${exchangeName}/markets`,
         json: true
@@ -14,7 +13,7 @@ exports.getOrderBook = (exchangeName)=> {
                     json: true
                 }, (err, response, body) => {
                     if (!err && response.statusCode === 200) {
-                        return body;
+                        callback(body);
                     }
                 })
             })
@@ -22,6 +21,11 @@ exports.getOrderBook = (exchangeName)=> {
         }
     });
 };
+/*
+test calling
+getOrderBook('binance',(data)=>{
+    console.log(data);
+});*/
 /*
 exports.getOpenOrders = (exchange_name, since, limit, public_apiKey,secret_key)=>{
     let exchange = new ccxt [exchange_name]({
