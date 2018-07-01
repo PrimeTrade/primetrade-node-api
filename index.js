@@ -83,6 +83,25 @@ exports.getTick = (marketName, exchangeName, callback) => {
     });
 };
 
+/*
+Sample calling of functions from another classes
+let index = require('./index.js');
+
+index.getExchanges(function (response) {
+    console.log(response);
+})
+
+
+index.getMarketCurrency('okex',function (response) {
+    console.log(response);
+})
+
+index.getTick('ETH/BTC', 'bittrex', function(response){
+    console.log(response);
+});
+
+*/
+
 
 /*
 exports.getOrderBook = (exchangeName) => {
