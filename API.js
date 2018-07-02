@@ -16,6 +16,10 @@ exports.getCandles = (marketName,exchangeName,callback,inter)=>{
         }
     });
 };
+
+exports.getInfo = (exchangeName,callback)=>{
+    
+}
 /*exports.getTick = (marketName, exchangeName, callback) => {
 
     let relativeURL = "http://13.126.176.236/exchange/"+ exchangeName +"/tickers?market=" + marketName;
