@@ -3,22 +3,19 @@ const _ = require("lodash");
 
 exports.getCandles = (marketName,exchangeName,callback,inter)=>{
 
-    //let relativeURL = "http://13.126.176.236/exchange/"+exchangeName+"/candles?market=" + marketName+"&interval="+interval;
-
     request.get({
         url: `http://13.126.176.236/exchange/${exchangeName}/candles?market=${marketName}&interval=${inter}`,
         json: true
     },function (err,res,body) {
         if(!err && res.statusCode === 200){
             //console.log(body);
-            let candles=[];
-            _.
+            callback(body);
         }
         else {
-            console.log('error occured');
+            throw err;
         }
     });
-};*/
+};
 /*exports.getTick = (marketName, exchangeName, callback) => {
 
     let relativeURL = "http://13.126.176.236/exchange/"+ exchangeName +"/tickers?market=" + marketName;
@@ -40,7 +37,7 @@ exports.getCandles = (marketName,exchangeName,callback,inter)=>{
 
     });
 }; */
-exports.getExchanges = (callback) => {
+/*exports.getExchanges = (callback) => {
 
     let relativeURL = "http://13.126.176.236/exchange";
     let exchange = [];
@@ -65,3 +62,4 @@ exports.getExchanges = (callback) => {
     });
 };
 
+*/
