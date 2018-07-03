@@ -1,33 +1,40 @@
 const request = require("request");
 const _ = require("lodash");
 
-exports.getCandles = (marketName,exchangeName,callback,inter)=>{
+getCandles = (marketName, exchangeName, interval) => {
 
-    request({
-        uri: `http://13.126.176.236/exchange/${exchangeName}/candles?market=${marketName}&interval=${inter}`,
+    const options = {
+        url: 'http://13.126.176.236/exchange/' + exchangeName + '/candles?market=' + marketName + '&interval=' + interval,
         json: true
-    },function (err,res,body) {
-        if(!err && res.statusCode === 200){
-            //console.log(body);
-            callback(body);
+    };
+
+    function requestCallback(error, response, body) {
+        if (!error && response.statusCode === 200) {
+            return body;
         }
-        else {
-            throw err;
-        }
-    });
+    }
+
+    return request(options, requestCallback);
 };
 
-exports.getInfo = (exchangeName,callback)=>{
-    request({
-        uri: `http://13.126.176.236/exchange/${exchangeName}`,
-        json:true
-    },function (err,res,body) {
-        if(!err && res.statusCode === 200){
-            callback(body);
-            return;
-        }
-        else {
-            console.log("Error occured");
-        }
-    });
-}
+printCandles = () => {
+    console.log(getCandles('USDT/BTC', 'binance', '30m'));
+};
+
+printCandles();
+
+// exports.getInfo = (exchangeName, callback) => {
+//     request({
+//         uri: `http://13.126.176.236/exchange/${exchangeName}`,
+//         json: true
+//     }, function (err, res, body) {
+//         if (!err && res.statusCode === 200) {
+//             callback(body);
+//             return;
+//         }
+//         else {
+//             console.log("Error occured");
+//         }
+//     });
+// }
+
