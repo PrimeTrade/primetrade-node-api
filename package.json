@@ -1,0 +1,25 @@
+{
+  "name": "primetrade-node-api",
+  "version": "1.0.0",
+  "description": "NPM Module for PrimeTrade.AI APIs",
+  "main": "API.js",
+  "dependencies": {
+    "lodash": "^4.17.10",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PrimeTrade/primetrade-node-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PrimeTrade/primetrade-node-api/issues"
+  },
+  "homepage": "https://github.com/PrimeTrade/primetrade-node-api#readme"
+}
