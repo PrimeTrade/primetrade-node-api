@@ -6,7 +6,7 @@ let lodash = require('lodash');
 exports.getExchanges = (callback) => {
 
     let relativeURL = "http://13.126.176.236/exchange";
-    let exchange = [];
+    //let exchange = [];
 
 
     let a = request({
@@ -16,8 +16,8 @@ exports.getExchanges = (callback) => {
 
         if (!error && response.statusCode === 200) {
 
-            exchange.push(body);
-            callback(exchange);
+            //exchange.push(body);
+            callback(body);
             return;
 
         }
