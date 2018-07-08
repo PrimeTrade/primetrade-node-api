@@ -5,7 +5,7 @@ let lodash = require('lodash');
 
 exports.getExchanges = (callback) => {
 
-    let relativeURL = "http://13.126.176.236/exchange";
+    let relativeURL = "http://api.primetrade.ai/exchange";
     //let exchange = [];
 
 
@@ -32,7 +32,7 @@ exports.getExchanges = (callback) => {
 exports.getMarketCurrency = (exchangeName, callback) => {
 
     var markets = [];
-    let relativeURL = "http://13.126.176.236/exchange/bittrex/markets";
+    let relativeURL = "http://api.primetrade.ai/exchange/bittrex/markets";
 
     let a = request({
         url: relativeURL,
@@ -61,7 +61,7 @@ exports.getMarketCurrency = (exchangeName, callback) => {
 
 exports.getTick = (marketName, exchangeName, callback) => {
 
-    let relativeURL = "http://13.126.176.236/exchange/"+ exchangeName +"/tickers?market=" + marketName;
+    let relativeURL = "http://api.primetrade.ai/exchange/"+ exchangeName +"/tickers?market=" + marketName;
 
     let a = request({
         url: relativeURL,
