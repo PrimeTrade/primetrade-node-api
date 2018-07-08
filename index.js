@@ -22,7 +22,9 @@ exports.getExchanges = (callback) => {
 
         }
         else {
-            console.log('error occured');
+            //console.log('error occured');
+            callback(error);
+            return;
         }
 
     });
@@ -50,7 +52,9 @@ exports.getMarketCurrency = (exchangeName, callback) => {
 			return;
         }
         else{
-            console.log('error occured');
+            //console.log('error occured');
+            callback(error);
+            return;
         }
 
 
@@ -74,12 +78,15 @@ exports.getTick = (marketName, exchangeName, callback) => {
             return;
         }
         else{
-            console.log('error occured');
+            //console.log('error occured');
+            callback(error);
+            return;
         }
 
 
     });
 };
+
 
 /*
 Sample calling of functions from another classes
