@@ -4,7 +4,7 @@
   "description": "A package for Primetrade.ai api ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node_modules/.bin/mocha"
   },
   "keywords": [
     "Primetarde",
@@ -15,6 +15,12 @@
   "dependencies": {
     "ccxt": "^1.14.267",
     "lodash": "^4.17.10",
+    "npm": "^6.1.0",
     "request": "^2.87.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "nock": "^9.4.1"
   }
 }

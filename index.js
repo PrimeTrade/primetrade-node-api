@@ -9,7 +9,7 @@ exports.getOrderBook = (exchangeName,callback)=> {
             _.each(body, (val, i) => {
                 let sym = val.symbol;
                 request({
-                    uri: `http://13.126.176.236/exchange/${exchangeName}/orderBook?market=${sym}`,
+                    uri: `http://13.126.176.236/exchange/${exchangeName}/orderBook?market=${sym}    `,
                     json: true
                 }, (err, response, body) => {
                     if (!err && response.statusCode === 200) {
@@ -21,7 +21,7 @@ exports.getOrderBook = (exchangeName,callback)=> {
         }
     });
 };
-let getSharedOrderBook = (callback)=>{
+exports.getSharedOrderBook = (callback)=>{
     request({
         uri: `http://13.126.176.236/exchange/binance/markets`,
         json: true
@@ -42,6 +42,11 @@ let getSharedOrderBook = (callback)=>{
             })
         }
     })
+};
+
+//market api
+let openOrders = (exchnageName, publicapiKey, secretKey)=>{
+
 };
 
 /*
