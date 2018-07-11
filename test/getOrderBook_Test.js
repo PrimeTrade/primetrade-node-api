@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
 const nock = require('nock');
 const index = require('../index');
-const res = require('./orderBookResponse');
+const res = require('./Responses/orderBookResponse');
 //var response;
 
 describe('Get OrderBook tests',()=>{
