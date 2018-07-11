@@ -1,19 +1,22 @@
 const expect = require('chai').expect;
 const nock = require('nock');
-const getOrderBook = require('../index').getOrderBook;
-const response = require('./orderBookResponse');
+const index = require('../index');
+const res = require('./orderBookResponse');
+//var response;
 
 describe('Get OrderBook tests',()=>{
     beforeEach(()=>{
         nock('http://api.primetrade.ai')
-            .get(`/bittrex/orderBook?market=BTG/BTC`)
-            .reply(200,response);
+            .get(`/exchange/bittrex/orderBook?market=BTG/BTC`)
+            .reply(200,res);
     });
     it('Get an exchange by ExchangeName',()=>{
-        return getOrderBook('bittrex',(data))
-            .then(response=>{
-                expect(typeof response).to.equal('object');
-            });
+       index.getOrderBook('bittrex',(data)=>{
+            //response = data;
+            //console.log(response);
+       });
+        //expect(typeof response).to.equal('undefined');
+        expect(typeof res).to.equal('object');
     });
 });
 /*describe('First Test',()=>{

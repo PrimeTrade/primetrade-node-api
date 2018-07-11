@@ -13,9 +13,11 @@
   "author": "Kunal Sharma <kunal@primetrade.ai>",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "ccxt": "^1.14.267",
     "lodash": "^4.17.10",
     "npm": "^6.1.0",
+    "promise": "^8.0.1",
     "request": "^2.87.0"
   },
   "devDependencies": {
