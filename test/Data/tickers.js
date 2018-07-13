@@ -1,0 +1,31 @@
+module.exports = {
+    "symbol": "ETH/BTC",
+    "timestamp": 1531416259293,
+    "datetime": "2018-07-12T17:24:19.293Z",
+    "high": 0.07022957,
+    "low": 0.06858724,
+    "bid": 0.07000001,
+    "ask": 0.07003998,
+    "open": 0.06900809,
+    "close": 0.07004012,
+    "last": 0.07004012,
+    "change": 0.0010320300000000032,
+    "percentage": 1.495520307836376,
+    "baseVolume": 5713.01851826,
+    "quoteVolume": 396.87701947,
+    "info": {
+    "MarketName": "BTC-ETH",
+        "High": 0.07022957,
+        "Low": 0.06858724,
+        "Volume": 5713.01851826,
+        "Last": 0.07004012,
+        "BaseVolume": 396.87701947,
+        "TimeStamp": "2018-07-12T17:24:19.293",
+        "Bid": 0.07000001,
+        "Ask": 0.07003998,
+        "OpenBuyOrders": 2493,
+        "OpenSellOrders": 5033,
+        "PrevDay": 0.06900809,
+        "Created": "2015-08-14T09:02:24.817"
+    }
+};
