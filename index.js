@@ -45,30 +45,12 @@ exports.getMarketCurrency = (exchangeName, callback) => {
 };
 
 
-exports.getTick = (marketName, exchangeName, callback) => {
-
-    let relativeURL = "http://api.primetrade.ai/exchange/"+ exchangeName +"/tickers?market=" + marketName;
-
-    let a = request({
-        url: relativeURL,
-        json: true
-    }, function (error, response, body) {
-
-        if (!error && response.statusCode === 200) {
-            //console.log(body);
-            callback(body);
-            return;
-        }
-        else{
-            //console.log('error occured');
-            callback(error);
-            return;
-        }
-
-
-    });
-};
-
+exports.getTick = (exchangeName, marketName) => {
+        return axios
+            .get("http://api.primetrade.ai/exchange/bittrex/tickers?market=BTC/UTC")
+            .then(res => res.data)
+            .catch(error => console.log(error));
+}
 
 /*
 Sample calling of functions from another classes
