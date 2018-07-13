@@ -1,7 +1,8 @@
 const expect = require('chai').expect;
 const nock = require('nock');
 const index = require('../index');
-const res = require('./Responses/orderBookResponse');
+let res = require('./Responses/orderBookResponse');
+const _ = require('lodash');
 //var response;
 
 describe('Get OrderBook tests',()=>{
@@ -12,11 +13,21 @@ describe('Get OrderBook tests',()=>{
     });
     it('Get an exchange by ExchangeName',()=>{
        index.getOrderBook('bittrex',(data)=>{
-            //response = data;
-            //console.log(response);
+            res=data;
        });
         //expect(typeof response).to.equal('undefined');
         expect(typeof res).to.equal('object');
+        expect(res).to.not.be.empty;
+        expect(Array.isArray(res));
+        _.each(res,(index)=>{
+            _.each(index,(val)=> {
+                _.each(val,(v)=>{
+                    expect(v).to.be.above(0);
+                    expect(v).to.not.be.null;
+                    expect(v).to.not.be.NaN;
+                })
+            })
+        })
     });
 });
 /*describe('First Test',()=>{
