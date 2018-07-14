@@ -5,18 +5,27 @@ const axios = require('axios');
 // public APIs
 
 
-exports.getExchange = () => {
-    return axios
-        .get(`http://api.primetrade.ai/exchange`)
-        .then(res => res.data)
-        .catch(error => console.log(error));
-}
+exports.getExchange = (callback)=> {
+    request({
+        uri: `http://api.primetrade.ai/exchange`,
+        json: true
+    }, (err, response, body) => {
+        if (!err && response.statusCode === 200) {
+            callback(body);
+            return
+        }
+        else{
+            callback(err);
+            return
+        }
+    });
+};
 
 
 exports.getMarketCurrency = (exchangeName, callback) => {
 
     var markets = [];
-    let relativeURL = "http://api.primetrade.ai/exchange/bittrex/markets";
+    let relativeURL = "http://api.primetrade.ai/exchange/" + exchangeName + "/markets";
 
     let a = request({
         url: relativeURL,
@@ -45,12 +54,21 @@ exports.getMarketCurrency = (exchangeName, callback) => {
 };
 
 
-exports.getTick = (exchangeName, marketName) => {
-        return axios
-            .get("http://api.primetrade.ai/exchange/bittrex/tickers?market=BTC/UTC")
-            .then(res => res.data)
-            .catch(error => console.log(error));
-}
+exports.getTick = (exchangeName, marketName, callback) => {
+         request({
+        	uri: "http://api.primetrade.ai/exchange/" + exchangeName + "/tickers?market=" + marketName,
+        	json: true
+    	}, (err, response, body) => {
+        	if (!err && response.statusCode === 200) {
+            	callback(body);
+            	return;
+        	}
+        	else{
+        		callback(err);
+        		return;
+        	}
+    	});
+};
 
 /*
 Sample calling of functions from another classes
