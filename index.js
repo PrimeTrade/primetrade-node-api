@@ -55,6 +55,7 @@ exports.getMarketCurrency = (exchangeName, callback) => {
 
 
 exports.getTick = (exchangeName, marketName, callback) => {
+
          request({
         	uri: "http://api.primetrade.ai/exchange/" + exchangeName + "/tickers?market=" + marketName,
         	json: true
@@ -68,6 +69,7 @@ exports.getTick = (exchangeName, marketName, callback) => {
         		return;
         	}
     	});
+    	
 };
 
 /*
