@@ -26,3 +26,19 @@ exports.getCandles = (exchangeName,marketName, interval, callback) => {
     });
 
 };
+exports.getInfo = (exchangeName,callback) =>{
+    let relativeURL = 'http://api.primetrade.ai/exchange/'+exchangeName;
+    request({
+        uri: relativeURL,
+        json: true
+    },function (error,response,body) {
+        if (!error && response.statusCode === 200) {
+            callback(body);
+            return;
+        }
+        else {
+            callback(error);
+            return;
+        }
+    });
+};
