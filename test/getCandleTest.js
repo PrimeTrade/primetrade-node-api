@@ -6,7 +6,7 @@ describe('Get candles test', () => {
     beforeEach(() => {
         nock(`http://api.primetrade.ai`).get('/exchange/bittrex/candles?market=BTC/USDT&interval=30m').reply(200, response); //30 min. interval
         nock(`http://api.primetrade.ai`).get('/exchange/bittrex/candles?market=BTC/USDT&interval=1m').reply(200, response); // 1 min interval
-        nock(`http://api.primetrade.ai`).get('/exchange/bittrex/candles?market=USDT/BTC&interval=30m').reply(200, response); // Invalid market
+        nock(`http://api.primetrade.ai`).get('/exchange/bittrex/candles?market=USDT/BTC&interval=30m').reply(404, response); // Invalid market
         nock(`http://api.primetrade.ai`).get('/exchange/tidex/candles?market=BTC/USDT&interval=30m').reply(200, response); // For exchange tidex
         nock(`http://api.primetrade.ai`).get('/exchange/luno/candles?market=BTC/USDT&interval=30m').reply(200, response); //For exchange Luno with invalid market name
     });
