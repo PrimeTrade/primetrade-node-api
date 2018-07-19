@@ -12,7 +12,6 @@
   ],
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
     "chai": "^4.1.2",
     "lodash": "^4.17.10",
     "mocha": "^5.2.0",
