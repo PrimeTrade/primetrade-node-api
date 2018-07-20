@@ -10,6 +10,7 @@ describe('Get the test for tickers', () => {
 
     beforeEach(() => {
         nock('http://api.primetrade.ai').get('/exchange/${exchangeName}/tickers?market=${marketName}').reply(200, response);
+        nock('http://api.primetrade.ai').get('/exchange/${exchangeName}/ticker?market=${marketName}').reply(404, response); // incorrect url  return 404 for url not found
     });
 
     index.getTick('bittrex', 'BTC-ETH"', (data)=>{

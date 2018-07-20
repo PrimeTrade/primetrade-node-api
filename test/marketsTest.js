@@ -9,6 +9,7 @@ describe('Get All Currencies of a Market', () => {
 
     beforeEach(() => {
         nock('http://api.primetrade.ai').get('/exchange/${exchangeName}/markets').reply(200, response);
+        nock('http://api.primetrade.ai').get('/exchange/${exchangeName}/ticker/').reply(404, response); //incorrect uri  return 404 for url not found
     });
 
     index.getMarketCurrency('bittrex', (data)=>{

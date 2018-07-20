@@ -10,6 +10,7 @@ describe('Get All the Exchanges', () => {
 
     beforeEach(() => {
         nock('http://api.primetrade.ai').get('/exchange').reply(200, response);
+        nock('http://api.primetrade.ai').get('/exchanges').reply(404, response); //incorrect url return 404 for url not found
     });
 
     index.getExchange((data)=>{
