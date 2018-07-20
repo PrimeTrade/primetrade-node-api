@@ -2,7 +2,7 @@ const _ = require('lodash');
 const nock = require('nock');
 const expect = require('chai').expect;
 const index = require('../index');
-let res = require('./Responses/sharedOrderBookResponse');
+let res = require('./Data/sharedOrderBookResponse');
 
 describe('Get SharedOrderBook test',()=>{
     beforeEach(()=>{
@@ -18,4 +18,4 @@ describe('Get SharedOrderBook test',()=>{
 
     })
 
-})
+});

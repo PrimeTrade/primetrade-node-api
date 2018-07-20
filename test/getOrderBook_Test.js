@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
 const nock = require('nock');
 const index = require('../index');
-let res = require('./Responses/orderBookResponse');
+let res = require('./Data/orderBookResponse');
 const _ = require('lodash');
 //var response;
 
@@ -11,14 +11,22 @@ describe('Get OrderBook tests',()=>{
             .get(`/exchange/bittrex/orderBook?market=BTG/BTC`)
             .reply(200,res);
     });
-    it('Get an exchange by ExchangeName',()=>{
-       index.getOrderBook('bittrex',(data)=>{
-            res=data;
-       });
-        //expect(typeof response).to.equal('undefined');
+    index.getOrderBook('bittrex',(data)=>{
+        res=data;
+    });
+    it('Check whether the response is of object type?',()=> {
         expect(typeof res).to.equal('object');
+    });
+
+    it('Check whether the response is not empty!',()=>{
         expect(res).to.not.be.empty;
+    });
+
+    it('Check whether the response is an array',()=>{
         expect(Array.isArray(res));
+    });
+
+    it('Check that the bids and asks are always greater than 0',()=>{
         _.each(res,(index)=>{
             _.each(index,(val)=> {
                 _.each(val,(v)=>{
@@ -30,8 +38,3 @@ describe('Get OrderBook tests',()=>{
         })
     });
 });
-/*describe('First Test',()=>{
-    it('Should assert true to be true',()=>{
-        expect(true).to.be.true;
-    });
-})*/
