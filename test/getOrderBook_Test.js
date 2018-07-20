@@ -15,7 +15,7 @@ describe('Get OrderBook tests',()=>{
         });
 
     });
-    it('',()=>{
+    it('Check for correct url',()=>{
         expect(scope.interceptors[0].body.bids).to.equal(res.bids);
     });
 
