@@ -5,28 +5,47 @@ const index = require('../index');
 let response = require('./Data/exchanges');
 
 
-describe('Get User tests', () => {
+describe('Get All the Exchanges', () => {
 
 
     beforeEach(() => {
         nock('http://api.primetrade.ai').get('/exchange').reply(200, response);
     });
 
+    index.getExchange((data)=>{
+        response = data;
+    });
 
-    it('Get the exchanges',() => {
-
-        index.getExchange((data)=>{
-            response = data;
-        });
+    it('Check if it is object',() => {
 
         expect(typeof response).to.equal('object');
-        expect(response).to.not.be.empty;
-        expect(Array.isArray(response));
-        expect(response[0]).to.equal('_1broker');
-        expect(response[response.length-1]).to.equal('zb');
 
     });
 
+    it('check if it is not empty',() => {
+
+        //expect(response).to.not.be.empty;
+        expect(response.length).to.be.above(0);
+
+    });
+
+    it('check if the returned is an Array',() => {
+
+        expect(Array.isArray(response));
+
+    });
+
+    it('check the 1st position',() => {
+
+        expect(response[0]).to.equal('_1broker');
+
+    });
+
+    it('check the 2nd position',() => {
+
+        expect(response[response.length-1]).to.equal('zb');
+
+    });
 
 });
 
