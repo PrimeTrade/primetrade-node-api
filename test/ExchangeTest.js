@@ -41,7 +41,7 @@ describe('Get All the Exchanges', () => {
 
     });
 
-    it('check the 2nd position',() => {
+    it('check the last position',() => {
 
         expect(response[response.length-1]).to.equal('zb');
 
