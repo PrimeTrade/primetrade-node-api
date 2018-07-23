@@ -1,5 +1,5 @@
-const request = require('request');
-const lodash = require('lodash');
+const request = require("request");
+const _ = require("lodash");
 
 // public APIs
 //strings for the url's
@@ -8,9 +8,41 @@ let exchangeString = 'exchange/';
 let marketString = '/markets/';
 let tickerString = '/tickers?market=';
 
+exports.getCandles = (exchangeName,marketName, interval, callback) => {
+    let relativeURL = 'http://api.primetrade.ai/exchange/' + exchangeName + '/candles?market=' + marketName + '&interval=' + interval;
+    request({
+        uri: relativeURL,
+        json: true
+    }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            callback(body);
+            return;
+        }
+        else {
+            callback(error);
+            return;
+        }
+    });
+};
+
+exports.getInfo = (exchangeName,callback) =>{
+    let relativeURL = 'http://api.primetrade.ai/exchange/'+exchangeName;
+    request({
+        uri: relativeURL,
+        json: true
+    },function (error,response,body) {
+        if (!error && response.statusCode === 200) {
+            callback(body);
+            return;
+        }
+        else {
+            callback(error);
+            return;
+        }
+    });
+};
 
 exports.getExchange = (callback)=> {
-
     request({
         uri: uri + exchangeString,
         json: true
@@ -25,23 +57,16 @@ exports.getExchange = (callback)=> {
             return
         }
     });
-
 };
 
-
-
 exports.getMarketCurrency = (exchangeName, callback) => {
-
     var markets = [];
-
     request({
         uri: uri + exchangeString + exchangeName + marketString ,
         json: true
     }, function (error, response, body) {
-
         if (!error && response.statusCode === 200) {
-
-            lodash.forEach(body, (i) => {
+            _.forEach(body, (i) => {
                 //getting symbol for each and pushing in the array
                 markets.push(i.symbol);
             })
@@ -49,20 +74,14 @@ exports.getMarketCurrency = (exchangeName, callback) => {
 			return;
         }
         else{
-            //console.log('error occured');
             callback(error);
             return;
         }
-
-
     });
     return markets;
 };
 
-
-
 exports.getTick = (exchangeName, marketName, callback) => {
-
          request({
         	uri: uri + exchangeString + exchangeName + tickerString + marketName,
         	json: true
@@ -77,6 +96,4 @@ exports.getTick = (exchangeName, marketName, callback) => {
         		return;
         	}
     	});
-    	
 };
-
