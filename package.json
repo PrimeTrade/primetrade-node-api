@@ -10,7 +10,7 @@
     "Primetarde",
     "Primetradeai"
   ],
-  "author": "Kunal Sharma <kunal@primetrade.ai>",
+  "author": "Developers @ Prime Trade",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
