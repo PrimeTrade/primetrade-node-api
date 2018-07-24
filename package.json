@@ -7,7 +7,7 @@
     "test": "node_modules/.bin/mocha"
   },
   "keywords": [
-    "Primetarde",
+    "Primetrade",
     "Primetradeai"
   ],
   "author": "Developers @ Prime Trade",
