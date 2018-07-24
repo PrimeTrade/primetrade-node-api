@@ -1,6 +1,6 @@
 # PrimeTradeai_api
 
-A JavaScript library that help you to get different OrderBook, candels, Tickers and marketCurrency using the primetrade api. 
+A JavaScript library that help you to get different OrderBook, candles, Tickers and marketCurrency using the primetrade api. 
 
 ## Installing
 ```
