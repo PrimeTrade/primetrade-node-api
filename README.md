@@ -12,34 +12,43 @@ npm i primetradeai_api
 const primetrade = require('primetradeai_api') 
 // now primetrade can be used to access the functions
 
-## Getting All Exchanges
+### Getting All Exchanges
 
 primetrade.getExchange((response) => {
-	console.log(response)
+console.log(response)
 })
 
-## Getting All Currencies of a Market
+### Getting All Currencies of a Market
 
 primetrade.getMarketCurrency('bittrex', (response) => {
-	console.log(response)
+console.log(response)
 })
 
 
-## Getting Ticker 
+### Getting Ticker 
 
 primetrade.getTick('bittrex', 'BTC/UTC', (response) => {
-	console.log(response)
+console.log(response)
 })
 
 
-## Getting Info of an Exchanges
+### Getting Info of an Exchanges
 
 primetrade.getInfo('bittrex', (response) => {
-	console.log(response)
+console.log(response)
 })
 
+### Getting Candles for an interval
 
+primetrade.getCandles('bittrex', 'BTC/UTC', '1m', (response) => {
+console.log(response)
+})
 
+### Getting the Order Books
+
+primetrade.getOrderBook('bittrex', (response) => {
+console.log(response)
+})
 
 ## Running the tests
 
