@@ -3,9 +3,9 @@
 A JavaScript library that help you to get different OrderBook, candels, Tickers and marketCurrency using the primetrade api. 
 
 ## Installing
-
+```
 npm i primetradeai_api
-
+```
 
 ## Getting Started
 ```
@@ -60,4 +60,9 @@ console.log(response)
 ## Running the tests
 ```
 npm test
+```
+
+## Version
+```
+1.0.0
 ```
