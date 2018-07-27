@@ -61,6 +61,10 @@ console.log(response)
 ```
 npm test
 ```
+## GitHub Link
+```
+https://github.com/PrimeTrade/primetrade-node-api
+```
 
 ## Version
 ```
