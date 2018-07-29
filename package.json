@@ -1,5 +1,5 @@
 {
-  "name": "primetradeai_api",
+  "name": "node.primetrade.api",
   "version": "1.0.2",
   "description": "A package for Primetrade.ai api ",
   "main": "index.js",
