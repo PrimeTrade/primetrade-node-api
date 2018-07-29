@@ -1,15 +1,15 @@
-# PrimeTradeai_api
+# Prime Trade AI Public APIs
 
 A JavaScript library that help you to get different OrderBook, candles, Tickers and marketCurrency using the primetrade api. 
 
 ## Installing
 ```
-npm i primetradeai_api
+npm i node.primetrade.ai
 ```
 
 ## Getting Started
 ```
-const primetrade = require('primetradeai_api') 
+const primetrade = require('node.primetrade.ai') 
 // now primetrade can be used to access the functions
 ```
 
