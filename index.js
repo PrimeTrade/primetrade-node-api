@@ -4,21 +4,21 @@ const _ = require('lodash');
 
 // public APIs
 //strings for the url's
-let uri = 'http://api.primetrade.ai/';
+let uri = 'https://api.primetrade.ai/';
 let exchangeString = 'exchange/';
 let marketString = '/markets/';
 let tickerString = '/tickers?market=';
 
 exports.getOrderBook = (exchangeName,callback)=> {
     request({
-        uri: `http://api.primetrade.ai/exchange/${exchangeName}/markets`,
+        uri: `https://api.primetrade.ai/exchange/${exchangeName}/markets`,
         json: true
     }, (err, response, body) => {
         if (!err && response.statusCode === 200) {
             _.each(body, (val, i) => {
                 let sym = val.symbol;
                 request({
-                    uri: `http://api.primetrade.ai/exchange/${exchangeName}/orderBook?market=${sym}`,
+                    uri: `https://api.primetrade.ai/exchange/${exchangeName}/orderBook?market=${sym}`,
                     json: true
                 }, (err, response, body) => {
                     if (!err && response.statusCode === 200) {
@@ -32,7 +32,7 @@ exports.getOrderBook = (exchangeName,callback)=> {
 };
     /*
     return axios
-        .get(`http://api.primetrade.ai/exchange/${exchangeName}/orderBook?market=BTG/BTC`)
+        .get(`https://api.primetrade.ai/exchange/${exchangeName}/orderBook?market=BTG/BTC`)
         .then(res=>res.data)
         .catch(error=>console.log(error));
 */
@@ -40,14 +40,14 @@ exports.getOrderBook = (exchangeName,callback)=> {
 
 exports.getSharedOrderBook = (callback)=>{
     request({
-        uri: `http://api.primetrade.ai/exchange/binance/markets`,
+        uri: `https://api.primetrade.ai/exchange/binance/markets`,
         json: true
     },(err, response, body)=>{
         if(!err && response.statusCode===200){
             _.each(body, (val,i)=>{
                 let sym = val.symbol;
                 request({
-                    uri: `http://api.primetrade.ai/sharedOrderBook?market=${sym}`,
+                    uri: `https://api.primetrade.ai/sharedOrderBook?market=${sym}`,
                     json: true
                 },(err, response, body)=>{
                     if(!err && response.statusCode===200){
@@ -67,7 +67,7 @@ let openOrders = (exchnageName, publicapiKey, secretKey)=>{
 };
 
 exports.getCandles = (exchangeName,marketName, interval, callback) => {
-    let relativeURL = 'http://api.primetrade.ai/exchange/' + exchangeName + '/candles?market=' + marketName + '&interval=' + interval;
+    let relativeURL = 'https://api.primetrade.ai/exchange/' + exchangeName + '/candles?market=' + marketName + '&interval=' + interval;
     request({
         uri: relativeURL,
         json: true
@@ -84,7 +84,7 @@ exports.getCandles = (exchangeName,marketName, interval, callback) => {
 };
 
 exports.getInfo = (exchangeName,callback) =>{
-    let relativeURL = 'http://api.primetrade.ai/exchange/'+exchangeName;
+    let relativeURL = 'https://api.primetrade.ai/exchange/'+exchangeName;
     request({
         uri: relativeURL,
         json: true
