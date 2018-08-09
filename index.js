@@ -1,4 +1,3 @@
-const axios = require('axios');
 const request = require('request');
 const _ = require('lodash');
 
@@ -30,13 +29,6 @@ exports.getOrderBook = (exchangeName,callback)=> {
         }
     });
 };
-    /*
-    return axios
-        .get(`https://api.primetrade.ai/exchange/${exchangeName}/orderBook?market=BTG/BTC`)
-        .then(res=>res.data)
-        .catch(error=>console.log(error));
-*/
-
 
 exports.getSharedOrderBook = (callback)=>{
     request({
