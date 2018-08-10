@@ -2,12 +2,13 @@ const _ = require('lodash');
 const nock = require('nock');
 const expect = require('chai').expect;
 const index = require('../index');
+const URL = require('../urlStrings');
 let res = require('./Data/sharedOrderBookResponse');
 
 describe('Get SharedOrderBook test',()=>{
     beforeEach(()=>{
-        nock(`http://api.primetrade.ai`)
-            .get(`/sharedOrderBook?market=`)
+        nock(URL.uri)
+            .get(`${URL.sharedBookString}`)
             .reply(200,res);
     });
     it('Get a symbol pair',()=>{

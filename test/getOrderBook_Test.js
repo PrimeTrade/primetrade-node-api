@@ -1,6 +1,7 @@
 const expect = require('chai').expect;
 const nock = require('nock');
 const index = require('../index');
+const URL = require('../urlStrings');
 let res= require('./Data/orderBookResponse');
 const _ = require('lodash');
 //var response;
@@ -8,7 +9,7 @@ const _ = require('lodash');
 describe('Get OrderBook tests',()=>{
     let scope;
     beforeEach(()=>{
-        scope = nock(`http://api.primetrade.ai`).get(`/exchange/bittrex/orderBook?market=BTG/BTC`).reply(200,res);
+        scope = nock(URL.uri).get(URL.exchangeString + `/bittrex${URL.orderBookString}=BTG/BTC`).reply(200,res);
 
         index.getOrderBook('bittrex',(data)=>{
             res=data;

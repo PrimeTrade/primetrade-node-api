@@ -1,23 +1,20 @@
 const request = require('request');
+const URL = require('./urlStrings');
 const _ = require('lodash');
 
 // public APIs
-//strings for the url's
-let uri = 'https://api.primetrade.ai/';
-let exchangeString = 'exchange/';
-let marketString = '/markets/';
-let tickerString = '/tickers?market=';
+
 
 exports.getOrderBook = (exchangeName,callback)=> {
     request({
-        uri: uri+exchangeString+exchangeName + marketString,
+        uri: URL.uri + URL.exchangeString + exchangeName + URL.marketString,
         json: true
     }, (err, response, body) => {
         if (!err && response.statusCode === 200) {
             _.each(body, (val, i) => {
                 let sym = val.symbol;
                 request({
-                    uri: uri + exchangeString + exchangeName + `/orderBook?market=${sym}`,
+                    uri: URL.uri + URL.exchangeString + exchangeName + URL.orderBookString + `${sym}`,
                     json: true
                 }, (err, response, body) => {
                     if (!err && response.statusCode === 200) {
@@ -32,14 +29,14 @@ exports.getOrderBook = (exchangeName,callback)=> {
 
 exports.getSharedOrderBook = (callback)=>{
     request({
-        uri: uri + exchangeString + 'binance' + marketString,
+        uri: URL.uri + URL.exchangeString + 'binance' + URL.marketString,
         json: true
     },(err, response, body)=>{
         if(!err && response.statusCode===200){
             _.each(body, (val,i)=>{
                 let sym = val.symbol;
                 request({
-                    uri: uri + `sharedOrderBook?market=${sym}`,
+                    uri: URL.uri + URL.sharedBookString + `${sym}`,
                     json: true
                 },(err, response, body)=>{
                     if(!err && response.statusCode===200){
@@ -59,7 +56,7 @@ let openOrders = (exchnageName, publicapiKey, secretKey)=>{
 };
 
 exports.getCandles = (exchangeName,marketName, interval, callback) => {
-    let relativeURL = uri + exchangeString + exchangeName + '/candles?market=' + marketName + '&interval=' + interval;
+    let relativeURL = URL.uri + URL.exchangeString + exchangeName + URL.candleString + marketName + '&interval=' + interval;
     request({
         uri: relativeURL,
         json: true
@@ -76,7 +73,7 @@ exports.getCandles = (exchangeName,marketName, interval, callback) => {
 };
 
 exports.getInfo = (exchangeName,callback) =>{
-    let relativeURL = uri + exchangeString + exchangeName;
+    let relativeURL = URL.uri + URL.exchangeString + exchangeName;
     request({
         uri: relativeURL,
         json: true
@@ -94,7 +91,7 @@ exports.getInfo = (exchangeName,callback) =>{
 
 exports.getExchange = (callback)=> {
     request({
-        uri: uri + exchangeString,
+        uri: URL.uri + URL.exchangeString,
         json: true
     }, (err, response, body) => {
         if (!err && response.statusCode === 200) {
@@ -112,7 +109,7 @@ exports.getExchange = (callback)=> {
 exports.getMarketCurrency = (exchangeName, callback) => {
     var markets = [];
     request({
-        uri: uri + exchangeString + exchangeName + marketString ,
+        uri: URL.uri + URL.exchangeString + exchangeName + URL.marketString ,
         json: true
     }, function (error, response, body) {
         if (!error && response.statusCode === 200) {
@@ -133,7 +130,7 @@ exports.getMarketCurrency = (exchangeName, callback) => {
 
 exports.getTick = (exchangeName, marketName, callback) => {
          request({
-        	uri: uri + exchangeString + exchangeName + tickerString + marketName,
+        	uri: URL.uri + URL.exchangeString + exchangeName + URL.tickerString + marketName,
         	json: true
     	}, (err, response, body) => {
         	if (!err && response.statusCode === 200) {
