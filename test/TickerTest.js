@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const nock = require('nock');
-
+const URL = require('../urlStrings');
 const index = require('../index');
 let response = require('./Data/tickers');
 
@@ -9,8 +9,8 @@ describe('Get the test for tickers', () => {
 
 
     beforeEach(() => {
-        nock('http://api.primetrade.ai').get('/exchange/${exchangeName}/tickers?market=${marketName}').reply(200, response);
-        nock('http://api.primetrade.ai').get('/exchange/${exchangeName}/ticker?market=${marketName}').reply(404, response); // incorrect url  return 404 for url not found
+        nock(URL.uri).get(`${URL.exchangeString}${exchangeName}${URL.tickerString}${marketName}`).reply(200, response);
+        nock(URL.uri).get(`${URL.exchangeString}${exchangeName}/ticker?market=${marketName}`).reply(404, response); // incorrect url  return 404 for url not found
     });
 
     index.getTick('bittrex', 'BTC-ETH"', (data)=>{

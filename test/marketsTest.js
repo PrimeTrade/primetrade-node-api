@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const nock = require('nock');
-
+const URL = require('../urlStrings');
 const index = require('../index');
 let response = require('./Data/markets');
 
@@ -8,8 +8,8 @@ let response = require('./Data/markets');
 describe('Get All Currencies of a Market', () => {
 
     beforeEach(() => {
-        nock('http://api.primetrade.ai').get('/exchange/${exchangeName}/markets').reply(200, response);
-        nock('http://api.primetrade.ai').get('/exchange/${exchangeName}/ticker/').reply(404, response); //incorrect uri  return 404 for url not found
+        nock(URL.uri).get(`${URL.exchangeString}${exchangeName}${URL.marketString}`).reply(200, response);
+        nock(URL.uri).get(`${URL.exchangeString}${exchangeName}/ticker/`).reply(404, response); //incorrect uri  return 404 for url not found
     });
 
     index.getMarketCurrency('bittrex', (data)=>{
