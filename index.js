@@ -10,14 +10,14 @@ let tickerString = '/tickers?market=';
 
 exports.getOrderBook = (exchangeName,callback)=> {
     request({
-        uri: `https://api.primetrade.ai/exchange/${exchangeName}/markets`,
+        uri: uri+exchangeString+exchangeName + marketString,
         json: true
     }, (err, response, body) => {
         if (!err && response.statusCode === 200) {
             _.each(body, (val, i) => {
                 let sym = val.symbol;
                 request({
-                    uri: `https://api.primetrade.ai/exchange/${exchangeName}/orderBook?market=${sym}`,
+                    uri: uri + exchangeString + exchangeName + `/orderBook?market=${sym}`,
                     json: true
                 }, (err, response, body) => {
                     if (!err && response.statusCode === 200) {
@@ -32,14 +32,14 @@ exports.getOrderBook = (exchangeName,callback)=> {
 
 exports.getSharedOrderBook = (callback)=>{
     request({
-        uri: `https://api.primetrade.ai/exchange/binance/markets`,
+        uri: uri + exchangeString + 'binance' + marketString,
         json: true
     },(err, response, body)=>{
         if(!err && response.statusCode===200){
             _.each(body, (val,i)=>{
                 let sym = val.symbol;
                 request({
-                    uri: `https://api.primetrade.ai/sharedOrderBook?market=${sym}`,
+                    uri: uri + `sharedOrderBook?market=${sym}`,
                     json: true
                 },(err, response, body)=>{
                     if(!err && response.statusCode===200){
@@ -59,7 +59,7 @@ let openOrders = (exchnageName, publicapiKey, secretKey)=>{
 };
 
 exports.getCandles = (exchangeName,marketName, interval, callback) => {
-    let relativeURL = 'https://api.primetrade.ai/exchange/' + exchangeName + '/candles?market=' + marketName + '&interval=' + interval;
+    let relativeURL = uri + exchangeString + exchangeName + '/candles?market=' + marketName + '&interval=' + interval;
     request({
         uri: relativeURL,
         json: true
@@ -76,7 +76,7 @@ exports.getCandles = (exchangeName,marketName, interval, callback) => {
 };
 
 exports.getInfo = (exchangeName,callback) =>{
-    let relativeURL = 'https://api.primetrade.ai/exchange/'+exchangeName;
+    let relativeURL = uri + exchangeString + exchangeName;
     request({
         uri: relativeURL,
         json: true
